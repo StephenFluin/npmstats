@@ -33,7 +33,7 @@ if($mode == "github") {
 	$path = $gh . 'search/issues?q=+type:pr+repo:'.urlencode($pkg).'+is:open';
 	if($debug) { print("fetching from " . $path); }
 	$data = file_get_contents($path, false, $context);
-	if($data['message'] === 'Not Found') {
+	if(!$data === 'Not Found') {
 		finish(500, 'Problem "not found" fetching from ' . $path);
 	}
   finish(200,$data);
